@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dzexpress — browse and explore modern electronics: laptops, headphones, keyboards, monitors and more."
+    />
+    <title>Dzexpress — Discover Our Products</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+  </head>
+  <body>
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="#top" class="brand" aria-label="Dzexpress home">
+          <span class="brand-mark" aria-hidden="true">DZ</span>
+          <span class="brand-name">Dzexpress</span>
+        </a>
+
+        <nav class="main-nav" id="mainNav" aria-label="Primary">
+          <a href="#top" class="nav-link">Home</a>
+          <a href="#catalog" class="nav-link">Products</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <form class="header-search" id="headerSearch" role="search" autocomplete="off">
+          <label for="headerSearchInput" class="visually-hidden">Search products</label>
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <input
+            type="search"
+            id="headerSearchInput"
+            class="header-search-input"
+            placeholder="Search products…"
+            aria-label="Search products"
+          />
+        </form>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mainNav"
+        >
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="hero-eyebrow">Welcome to Dzexpress</p>
+            <h1 id="heroTitle" class="hero-title">Discover Our Products</h1>
+            <p class="hero-text">
+              Browse a curated selection of modern electronics — laptops,
+              headphones, keyboards, monitors and more. Compare features and
+              explore details, all in one place.
+            </p>
+            <a href="#catalog" class="btn btn-primary btn-lg">Explore Products</a>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-glow"></div>
+            <img
+              src="https://images.pexels.com/photos/1447254/pexels-photo-1447254.jpeg?auto=compress&cs=tinysrgb&w=900"
+              alt=""
+              class="hero-img"
+              loading="eager"
+              onerror="this.style.display='none'"
+            />
+            <div class="hero-badge">
+              <span class="hero-badge-num">10+</span>
+              <span class="hero-badge-label">Products to explore</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CATALOG ===================== -->
+      <section class="catalog" id="catalog" aria-labelledby="catalogTitle">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-eyebrow">Our Catalog</p>
+            <h2 id="catalogTitle" class="section-title">Browse Our Products</h2>
+            <p class="section-sub">
+              Search, filter and sort to find exactly what you need.
+            </p>
+          </div>
+
+          <!-- Filters / toolbar -->
+          <div class="toolbar" role="region" aria-label="Product filters">
+            <div class="toolbar-row">
+              <label class="field">
+                <span class="field-label">Category</span>
+                <select id="filterCategory" class="select">
+                  <option value="all">All categories</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field-label">Sort by</span>
+                <select id="sortBy" class="select">
+                  <option value="default">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name-asc">Name: A to Z</option>
+                  <option value="name-desc">Name: Z to A</option>
+                </select>
+              </label>
+
+              <button type="button" class="btn btn-ghost" id="resetFilters">
+                Reset filters
+              </button>
+            </div>
+
+            <div class="toolbar-row toolbar-search-row">
+              <label class="field field-grow" for="catalogSearch">
+                <span class="field-label">Search</span>
+                <input
+                  type="search"
+                  id="catalogSearch"
+                  class="input"
+                  placeholder="Search by name or description…"
+                  autocomplete="off"
+                />
+              </label>
+              <p class="result-count" id="resultCount" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <!-- Product grid -->
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+          <!-- Empty state -->
+          <div class="empty-state" id="emptyState" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="empty-icon">
+              <path
+                d="M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filters.</p>
+            <button type="button" class="btn btn-secondary" id="emptyReset">
+              Clear filters
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== ABOUT ===================== -->
+      <section class="about" id="about" aria-labelledby="aboutTitle">
+        <div class="container about-inner">
+          <div class="about-copy">
+            <p class="section-eyebrow">About Us</p>
+            <h2 id="aboutTitle" class="section-title">
+              Your trusted window to modern electronics
+            </h2>
+            <p>
+              Dzexpress is a product consultation platform that helps you
+              explore and compare the latest electronic devices before making a
+              decision. From laptops to accessories, we bring together clear
+              information, detailed descriptions and up-to-date pricing in
+              Algerian dinars.
+            </p>
+            <p>
+              This website is built for browsing and discovery only — there is
+              no shopping cart or online ordering. Our goal is to help you make
+              an informed choice.
+            </p>
+            <ul class="about-list">
+              <li>Curated, up-to-date product catalog</li>
+              <li>Clear pricing in Algerian dinars (DZD)</li>
+              <li>Fast search, filters and sorting</li>
+              <li>Detailed product information on demand</li>
+            </ul>
+          </div>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-num">10+</span>
+              <span class="stat-label">Products</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">6</span>
+              <span class="stat-label">Categories</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">24/7</span>
+              <span class="stat-label">Always available</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section class="contact" id="contact" aria-labelledby="contactTitle">
+        <div class="container contact-inner">
+          <div class="contact-copy">
+            <p class="section-eyebrow">Contact</p>
+            <h2 id="contactTitle" class="section-title">Get in touch</h2>
+            <p>
+              Have a question about a product? Send us a message using the form.
+              Please note: this is a demonstration form — a backend service is
+              required to actually deliver messages.
+            </p>
+            <ul class="contact-info">
+              <li>Email: contact@dzexpress.example</li>
+              <li>Phone: +213 0 00 00 00 00</li>
+              <li>Address: Algiers, Algeria</li>
+            </ul>
+          </div>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <label class="field" for="contactName">
+                <span class="field-label">Name</span>
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  class="input"
+                  placeholder="Your full name"
+                  required
+                />
+                <span class="field-error" data-error-for="contactName"></span>
+              </label>
+
+              <label class="field" for="contactEmail">
+                <span class="field-label">Email</span>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="email"
+                  class="input"
+                  placeholder="you@example.com"
+                  required
+                />
+                <span class="field-error" data-error-for="contactEmail"></span>
+              </label>
+            </div>
+
+            <label class="field" for="contactMessage">
+              <span class="field-label">Message</span>
+              <textarea
+                id="contactMessage"
+                name="message"
+                class="input textarea"
+                rows="5"
+                placeholder="How can we help you?"
+                required
+              ></textarea>
+              <span class="field-error" data-error-for="contactMessage"></span>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Send message</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true">DZ</span>
+          <span class="brand-name">Dzexpress</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#top" class="footer-link">Home</a>
+          <a href="#catalog" class="footer-link">Products</a>
+          <a href="#about" class="footer-link">About</a>
+          <a href="#contact" class="footer-link">Contact</a>
+        </nav>
+        <p class="footer-copy">
+          &copy; <span id="year"></span> Dzexpress. For demonstration and
+          educational purposes.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ===================== PRODUCT MODAL ===================== -->
+    <div class="modal-overlay" id="modalOverlay" hidden>
+      <div
+        class="modal"
+        id="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+          aria-label="Close product details"
+        >
+          &times;
+        </button>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>
